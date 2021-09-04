@@ -1,3 +1,7 @@
+# Attributions
+
+[Simplemaps](https://simplemaps.com/data/world-cities) - access to 41 thousand world city entries 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

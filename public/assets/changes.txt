@@ -1,0 +1,22 @@
+change log
+- deleted last row due to being empty
+- deleted column label "iso3"
+- deleted column label "admin_name"
+- deleted column label "capital"
+- deleted column label "population"
+- deleted column label "id"
+- rename column label "iso2" to "iso_3166"
+- rename column label "lat" to "latitude"
+- rename column label "lng" to "longitude"
+- deleted column label "city_ascii"
+- inserted column label "city_ascii" into column A
+- deleted column label "country"
+- inserted column label "country" into column B
+- rename entry "\"Korea, South\"" to "South Korea"
+- rename entry "\"Korea, North\"" to "North Korea"
+- rename entry "\"Bahamas, The\"" to "The Bahamas"
+- rename entry "\"Micronesia, Federated States Of\"" to "Federated States Of Micronesia"
+- rename entry "\"Saint Helena, Ascension, And Tristan Da Cunha\"" to "Saint Helena Ascension And Tristan Da Cunha"
+- rename entry "\"Virgin Islands, British\"" to "British Virgin Islands"
+- rename entry "\"Islamorada, Village of Islands\"" to "Village of Islands Islamorada"
+- sorted rows by population

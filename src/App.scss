@@ -1,0 +1,135 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: auto 80%;
+    grid-template-rows: min-content auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    gap: 2em;
+    margin: 7.5em 10em;
+
+    .navigation {
+        display: flex;
+
+        & > *:not(:last-child) {
+            margin-right: 2em;
+        }
+    }
+
+    .current {
+        grid-area: 2 / 1 / span 2 / span 1;
+    }
+}
+
+.card {
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 100%;
+
+    .title {
+        padding: .5em 1em;
+        box-sizing: border-box;
+        background: darkcyan;
+        color: white;
+    }
+}
+
+.news {
+    align-items: baseline;
+    overflow: hidden;
+    width: 100%;
+
+    span:first-child {
+        font-weight: 700;
+        white-space: nowrap;
+        margin-right: 0.5em;
+    }
+
+    span:last-child {
+        font-weight: 100;
+        white-space: nowrap;
+    }
+}
+
+.search {
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    
+    .input {
+        display: flex;
+        width: 100%;
+        outline: 1px solid black;
+        padding: 0.1em 0.5em 0.1em 0.5em;
+        box-sizing: border-box;
+
+        &:focus-within {
+            outline: 3px solid black;
+        }
+
+        input:first-child {
+            width: auto;
+            font-size: 1.125em;
+            width: 100%;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        input:last-child {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 1.125em;
+            border: none;
+            background: none;
+        }
+    }
+
+    ul {
+        position: absolute;
+        background: white;
+        list-style: none;
+        top: 31px;
+        outline: 1px solid black;
+        width: 100%;
+        cursor: default;
+    }
+
+    li {
+        padding: 0.1em 0.5em 0.1em 0.5em;
+        box-sizing: border-box;
+        width: 100%;
+
+        &.selected {
+            background: #aaaaaa;
+        }
+
+        &:marker {
+            
+        }
+
+        p::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            font-size: 0.8em;
+            padding: 0.2em 0.2em 0.2em 0.2em;
+            vertical-align: text-bottom;
+            color: red;
+            content: "\f3c5";
+            float: right;
+        }
+
+        .mismatch {
+            color: grey;
+        }
+
+        .match {
+            color: black;
+        }
+    }
+}
