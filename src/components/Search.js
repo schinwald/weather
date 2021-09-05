@@ -42,7 +42,7 @@ function Search(props) {
 			return (
 				<li key={key}
 					className={classNames({"selected": selected === key})}
-					onClick={() => {handleResultClick(key);}}
+					onClick={() => {handleResultClick();}}
 					onMouseOver={() => {setSelected(key)}}
 					onFocus={handleFocus}>
 					<p>
@@ -59,8 +59,17 @@ function Search(props) {
 	function handleResultClick() {
 		const input = refLocation.current;
 		const result = results[selected];
-		input.value = result.name;
-		setLocation(result.tag);
+		const array = result.tag.split(", ")
+			.map((text) => {
+				const array = text.split(" ")
+					.map((text) => {
+						return text[0].toUpperCase() + text.slice(1).toLowerCase();
+					});
+				return array.join(" ")
+			});
+		const processed = array.join(", ");
+		input.value = processed;
+		setLocation(processed);
 		onSearch(result);
 	}
 
@@ -69,7 +78,7 @@ function Search(props) {
 		switch (code) {
 			case 'Enter':
 				if (selected !== null && 0 <= selected && selected < results.length) {
-					handleResultClick(selected);
+					handleResultClick();
 				}
 				break;
 			case 'ArrowUp':
@@ -132,7 +141,7 @@ function Search(props) {
 		<div className="search"
 			onFocus={handleFocus}
 			onBlur={handleBlur}>
-			<div className="input">
+			<div className="search__input">
 				<input
 					ref={refLocation}
 					type={"search"}
@@ -148,7 +157,7 @@ function Search(props) {
 				/>
 			</div>
 			{results.length > 0 &&
-				<ul>
+				<ul className="search__results">
 					{generateResultsHTML()}
 				</ul>
 			}
