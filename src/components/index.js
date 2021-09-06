@@ -1,3 +1,4 @@
-export { Search } from './Search';
-export { News } from './News';
-export { Current } from './Current';
+export { Search } from './Search.js';
+export { Current } from './Current.js';
+export { Weekly } from './Weekly.js';
+export { Hourly } from './Hourly.js';
