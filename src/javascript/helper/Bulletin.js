@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 
-function News(props) {
+function Bulletin(props) {
 
     const { text } = props;
     const [ animationDuration, setAnimationDuration ] = useState(0);
@@ -16,15 +16,33 @@ function News(props) {
         setAnimationDuration(duration);
     }, [refBulletin], [refBulletinMessage, text],)
 
+    function getAlert() {
+        if (text.length > 0) {
+            return (
+                <>
+                    <span>NEWS ALERT:</span>
+                    <span>{text.toUpperCase()}</span>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <span>NO NEWS ALERT</span>
+                    <span>{text.toUpperCase()}</span>
+                </>
+            );
+        }
+    }
+
     return (
         <div ref={refBulletin} className="bulletin">
             <p ref={refBulletinMessage} className="bulletin__message"
                 style={{animationDuration: animationDuration + "ms"}}>
-                {text}
+                {getAlert()}
             </p>
         </div>
     )
 }
 
 
-export { News };
+export { Bulletin };

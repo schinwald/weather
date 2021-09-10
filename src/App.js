@@ -1,18 +1,21 @@
-import { Navigation, Dashboard } from './layouts';
+import { Navigation, Dashboard, Attribution } from './javascript/layouts';
 import { useState, useEffect, createContext } from 'react';
 
-import './App.scss';
+import './css/App.scss';
+import './css/weather-icons.min.css';
+import './css/weather-icons-wind.min.css';
 
 const axios = require('axios');
 
 
 
-export const ContextLocations = createContext(null)
+export const ContextLocations = createContext();
+export const ContextLocation = createContext();
 
 function App() {
 
 	let [ locations, setLocations ] = useState(null);
-	let [ location, setLocation ] = useState(null);
+	let [ location, setLocation ] = useState({ name: "hello" });
 
 	// set default coordinates on mount
 	useEffect(() => {
@@ -20,7 +23,7 @@ function App() {
 	}, [])
 	
 	useEffect(() => {
-		axios.get(window.location.href + '/assets/worldcities.csv')
+		axios.get(window.location.href + '/assets/data/worldcities.csv')
 			.then((response) => {
 				const data = response.data.split("\n")
 					.filter((line, index) => {
@@ -53,12 +56,10 @@ function App() {
 			<ContextLocations.Provider value={locations}>
 				<Navigation onSearch={handleSearch} />
 			</ContextLocations.Provider>
-			<Dashboard />
-			<footer className="attribution">
-				<cite>
-					<a href="https://storyset.com/city">City illustrations by Storyset</a>
-				</cite>
-			</footer>
+			<ContextLocation.Provider value={location}>
+				<Dashboard />
+			</ContextLocation.Provider>
+			<Attribution />
 		</div>
 	)
 }

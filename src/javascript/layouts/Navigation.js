@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Search } from '../components';
-import { ContextLocations } from '../App.js'
+import { ContextLocations } from '../../App.js'
 
 
 function Navigation(props) {
