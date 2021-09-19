@@ -25,12 +25,6 @@
 
     --animation-bulletin-duration: 150ms;
     --animation-bulletin-element-width: 9ch;
-
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
 }
 
 * {
@@ -252,6 +246,7 @@ img {
         }
 
         .forecast__body {
+            height: 21em;
 
             .weather {
 
@@ -292,29 +287,36 @@ img {
             display: flex;
             justify-content: center;
         }
-    
-        .news__building {
+
+        .news__body {
             display: block;
-            height: 18em;
-            margin: -2rem;
-        }
-    
-        .news__location {
-            display: block;
-            margin: auto;
-            margin-top: 1rem;
-        }
-         
-        .news__location::before {
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            font-size: var(--font-size-xsmall);
-            padding: 0.2em;
-            vertical-align: text-bottom;
-            color: var(--red-900);
-            content: "\f3c5";
-            float: left;
-            margin-right: .5rem;
+            height: 16em;
+            width: auto;
+            text-align: center;
+
+            .news__building {
+                display: block;
+                height: 18em;
+                margin: -2rem auto;
+            }
+        
+            .news__location {
+                display: inline-block;
+                margin: auto;
+                margin-top: 1rem;
+            }
+             
+            .news__location::before {
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                font-size: var(--font-size-xsmall);
+                padding: 0.2em;
+                vertical-align: text-bottom;
+                color: var(--red-900);
+                content: "\f3c5";
+                float: left;
+                margin-right: .5rem;
+            }
         }
     }
 }
@@ -326,6 +328,7 @@ img {
         display: flex;
         justify-content: space-around;
         gap: 1vw;
+        height: 19em;
 
         .weather {
 
@@ -452,7 +455,7 @@ img {
             position: absolute;
             transform: translateX(-50%) translateY(20%);
             z-index: 1;
-            transition: 200ms all;
+            transition: 100ms all;
             opacity: 0%;
             font-size: clamp(1rem, 1vh, 2rem);
 
@@ -529,6 +532,19 @@ img {
     }
 }
 
+.animation--fade-in {
+    animation: 1s fadeIn ease-in-out both;
+}
+
+.animation--slide-up {
+    animation: 1s fadeIn ease-in-out both,
+        500ms slideUp ease-in-out both;
+}
+
+.animation--delay-medium {
+    animation-delay: 200ms;
+}
+
 @keyframes bulletin {
     0% {
         left: 100%;
@@ -538,4 +554,22 @@ img {
         transform: translateX(-100%);
     }
 
+}
+
+@keyframes fadeIn {
+    0% { 
+        opacity: 0%
+    }
+    100% { 
+        opacity: 100%
+    }
+}
+
+@keyframes slideUp {
+    0% { 
+        transform: translateY(1em);
+    }
+    100% { 
+        transform: translateY(0%);
+    }
 }

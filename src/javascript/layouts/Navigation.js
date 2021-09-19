@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { Search } from '../components';
-import { ContextLocations } from '../../App.js'
+import { ContextNavigation } from '../../App.js'
 
 
 function Navigation(props) {
 
     const { onSearch } = props;
-    const locations = useContext(ContextLocations);
+    const { locations } = useContext(ContextNavigation);
 
     return (
         <div className="navigation">

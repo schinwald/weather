@@ -59,15 +59,7 @@ function Search(props) {
 	function handleResultClick() {
 		const input = refLocation.current;
 		const result = results[selected];
-		const array = result.tag.split(", ")
-			.map((text) => {
-				const array = text.split(" ")
-					.map((text) => {
-						return text[0].toUpperCase() + text.slice(1).toLowerCase();
-					});
-				return array.join(" ")
-			});
-		const processed = array.join(", ");
+		const processed = formatInput(result.tag);
 		input.value = processed;
 		setLocation(processed);
 		onSearch(result);
@@ -110,23 +102,39 @@ function Search(props) {
 				text = text.substring(0, text.length - 1);
 			}
 		}
-		const array = text.replace(/[^\sa-zA-Z,]/, "")
-			.replace(/[\s]*[,][\s]*/, ",")
-			.split(",")
-			.map((text) => {
-				const array = text.replace(/[\s]+/, " ")
-					.split(" ")
-					.map((text) => {
-						if (text.length > 0) return text[0].toUpperCase() + text.slice(1).toLowerCase();
-						return "";
-					})
-				return array.join(" ");
-			});
-		const processed = array.join(", ");
+		const processed = formatInput(text);
 		if (location !== processed) {
 			setLocation(processed);
 		}
 		input.value = processed;
+	}
+
+	function formatInput(text) {
+		const array = text.replace(/[^\sa-zA-Z,/]/, "")
+			.replace(/[\s]*[,][\s]*/, ", ")
+			.replace(/[\s]+/, " ")
+			.split(", ")
+			.map((text) => {
+				let array = null;
+				let processed = null;
+				array = text.split(/[ ]/)
+					.map((text) => {
+						if (text.length > 0) return text[0].toUpperCase() + text.slice(1).toLowerCase();
+						return "";
+					});
+				console.log("space", array);
+				processed = array.join(" ");
+				array = processed.split(/[/]/)
+					.map((text) => {
+						if (text.length > 0) return text[0].toUpperCase() + text.slice(1).toLowerCase();
+						return "";
+					})
+				console.log("slash", array);
+				processed = array.join("/");
+				return processed;
+			});
+		const processed = array.join(", ");
+		return processed;
 	}
 
 	function handleFocus(event) {

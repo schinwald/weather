@@ -1,19 +1,38 @@
-import { ContextLocation } from '../../App.js';
+import { ContextDashboard } from '../../App.js';
 import { useContext } from 'react';
 import { Weather, Bulletin } from '../helper';
 
 
 function Current(props) {
 
-    const { location } = useContext(ContextLocation);
-    console.log(location)
+    const { time, location, weather } = useContext(ContextDashboard);
+    const current = weather ? weather.data.current : null;
 
-    const weatherTitle = (
-        <>
-            <h3>Now</h3>
-            <p>12:15pm EST</p>
-        </>
+    const forecastBody = weather ? (
+        <div className="forecast__body">
+            <Weather 
+                title={<>
+                    <h3>Now</h3>
+                    <p>12:15pm EST</p>
+                </>}
+                code={current.weather[0].id} 
+                description={current.weather[0].description}
+                temperature={Math.round(current.temp - 273.15)} />
+        </div>
+    ) : (
+        <div className="forecast__body">
+        </div>
     )
+
+    const newsBody = location ? (
+        <div className="news__body">
+            <img className="news__building animation--fade-in" src="assets/images/building.svg" alt="city building illustration"/>
+            <p className="news__location animation--slide-up animation--delay-medium">{location.name}</p>
+        </div>
+    ) : (
+        <div className="news__body">
+        </div>
+    );
 
     return (
         <section className="card">
@@ -25,9 +44,7 @@ function Current(props) {
                     </div>
                 </div>
                 <div className="forecast card__body card__body--primary">
-                    <div className="forecast__body">
-                        <Weather title={weatherTitle} code={"wi-owm-200"} data={null}/>
-                    </div>
+                    { forecastBody }
                 </div>
                 {/* News section */}
                 <div className="news card__title card__title--secondary">
@@ -36,8 +53,7 @@ function Current(props) {
                     </div>
                 </div>
                 <div className="news card__body card__body--secondary">
-                    <img className="news__building" src="assets/images/building.svg" alt="city building illustration"/>
-                    <p className="news__location">{"Guelph, Ontario"}</p>
+                    { newsBody }
                 </div>
                 <div className="news card__footer card__footer--secondary">
                     <Bulletin text={""} />
