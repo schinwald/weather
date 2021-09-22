@@ -241,12 +241,11 @@ img {
     .forecast {
 
         .forecast__title {
-            display: flex;
             justify-content: center;
         }
 
         .forecast__body {
-            height: 21em;
+            height: 24em;
 
             .weather {
 
@@ -263,14 +262,34 @@ img {
                 }
 
                 .weather__body {
-                    height: 15em;
+                    height: 18em;
 
                     .weather__content {
 
                         .weather__image {
+                            height: 13em;
 
                             &::before {
                                 font-size: 9rem;
+                            }
+                        }
+
+                        .weather__description {
+                            font-size: var(--font-size-medium);
+                        }
+
+                        .weather__details {
+                            
+                            td {
+                                font-size: var(--font-size-small);
+
+                                * {
+                                    font-size: var(--font-size-small);
+                                }
+
+                                .wi-wind {
+                                    font-size: var(--font-size-medium);
+                                }
                             }
                         }
                     }
@@ -324,28 +343,66 @@ img {
 .weekly {
     box-sizing: border-box;
 
+    .forecast__title {
+        justify-content: space-between;
+    }
+
     .forecast__body {
-        display: flex;
-        justify-content: space-around;
-        gap: 1vw;
         height: 19em;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: .2rem;
 
         .weather {
 
             .weather__body {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: .2rem;
                 height: 13em;
                 
                 .weather__content {
     
                     .weather__image {
+                        height: 7em;
 
                         &::before {
                             font-size: 5rem;
                         }
                     }
+
+                    .weather__description {
+                        font-size: var(--font-size-small)
+                    }
+
+                    .weather__details {
+                            
+                        td {
+                            font-size: var(--font-size-xsmall);
+
+                            * {
+                                font-size: var(--font-size-xsmall);
+                            }
+
+                            .wi-wind {
+                                font-size: var(--font-size-small);
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+}
+
+.forecast {
+
+    .forecast__title {
+        display: flex;
+    }
+
+    .forecast__body {
+
     }
 }
 
@@ -410,17 +467,48 @@ img {
             }
     
             .weather__image {
+                display: flex;
+                align-items: center;
                 overflow: hidden;
-                margin-bottom: .5em;
 
                 &::before {
                     display: block;
                     opacity: 40%;
+                    margin: auto;
                 }
             }
     
             .weather__description {
                 font-weight: 100;
+                height: 2em;
+            }
+
+            .weather__details {
+                margin: auto;
+                
+                td {
+                    width: auto;
+                    height: 1.5em;
+                    font-weight: 100;
+
+                    span {
+                        vertical-align: middle;
+                        line-height: 1rem;
+                    }
+
+                    .wi-wind {
+                        margin-left: .2rem;
+                    }
+                }
+
+                td:first-child {
+                    text-align: right;
+                }
+                
+                td:last-child {
+                    text-align: left;
+                    font-weight: 400;
+                }
             }
         }
     }
@@ -470,13 +558,17 @@ img {
 .temperature {
 
     .temperature__value {
+        display: inline-block;
         font-size: var(--font-size-xxlarge);
         font-weight: 900;
         font-style: italic;
     }
 
     .temperature__unit {
-        vertical-align: text-top;
+        display: inline-block;
+        vertical-align: top;
+        margin: .5rem 0 0 .2rem;
+        font-size: var(--font-size-medium);
     }
 }
 

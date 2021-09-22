@@ -2,37 +2,61 @@ import { ContextDashboard } from '../../App.js';
 import { useContext } from 'react';
 import { Weather, Bulletin } from '../helper';
 
-
 function Current(props) {
 
     const { time, location, weather } = useContext(ContextDashboard);
-    const current = weather ? weather.data.current : null;
+    let forecast;
+    let news;
 
-    const forecastBody = weather ? (
-        <div className="forecast__body">
-            <Weather 
-                title={<>
-                    <h3>Now</h3>
-                    <p>12:15pm EST</p>
-                </>}
-                code={current.weather[0].id} 
-                description={current.weather[0].description}
-                temperature={Math.round(current.temp - 273.15)} />
-        </div>
-    ) : (
-        <div className="forecast__body">
-        </div>
-    )
-
-    const newsBody = location ? (
-        <div className="news__body">
-            <img className="news__building animation--fade-in" src="assets/images/building.svg" alt="city building illustration"/>
-            <p className="news__location animation--slide-up animation--delay-medium">{location.name}</p>
-        </div>
-    ) : (
-        <div className="news__body">
-        </div>
-    );
+    if (time !== null && location !== null && weather !== null) {
+        const current = weather.data.current;
+        const minutely = weather.data.minutely;
+        let local = time + weather.data.timezone_offset;
+        let minutes = Math.floor(local / 60) % 60;
+        let hours = ((Math.floor(local / 3600) - 1) % 24) + 1;
+        let period = hours < 12 ? "am" : "pm";
+        let timezone = "";
+        hours = ((hours - 1) % 12) + 1;
+        forecast = {
+            body: 
+                <div className="forecast__body">
+                    <Weather 
+                        title={<>
+                            <h3>Now</h3>
+                            <p>{hours + ":" + minutes.toString().padStart(2, "0") + period}</p>
+                        </>}
+                        code={current.weather[0].id} 
+                        description={current.weather[0].description}
+                        temperature={Math.round(current.temp - 273.15)}
+                        feelsLike={Math.round(current.feels_like - 273.15)}
+                        precipitation={minutely[minutes].precipitation}
+                        humidity={current.humidity}
+                        clouds={current.clouds}
+                        wind={{
+                            degree: current.wind_deg,
+                            speed: current.wind_speed
+                        }} />
+                </div>
+        }
+        news = {
+            body: 
+                <div className="news__body">
+                    <img className="news__building animation--fade-in" src="assets/images/building.svg" alt="city building illustration"/>
+                    <p className="news__location animation--slide-up animation--delay-medium">{location.name}</p>
+                </div>
+        }
+    } else {
+        forecast = {
+            body: 
+                <div className="forecast__body">
+                </div>
+        }
+        news = {
+            body: 
+                <div className="news__body">
+                </div>
+        }
+    }
 
     return (
         <section className="card">
@@ -44,7 +68,7 @@ function Current(props) {
                     </div>
                 </div>
                 <div className="forecast card__body card__body--primary">
-                    { forecastBody }
+                    { forecast.body }
                 </div>
                 {/* News section */}
                 <div className="news card__title card__title--secondary">
@@ -53,7 +77,7 @@ function Current(props) {
                     </div>
                 </div>
                 <div className="news card__body card__body--secondary">
-                    { newsBody }
+                    { news.body }
                 </div>
                 <div className="news card__footer card__footer--secondary">
                     <Bulletin text={""} />
