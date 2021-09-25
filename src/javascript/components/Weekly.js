@@ -53,10 +53,10 @@ function Weekly(props) {
         <div className="card">
             <div className="weekly card__content">
                 {/* Forecast section */}
-                <div className="card__title card__title--primary">
+                <div className="forecast card__title card__title--primary">
                     <h2>Weekly Forecast</h2>
                 </div>
-                <div className="card__body card__body--primary">
+                <div className="forecast card__body card__body--primary">
                     { forecast.body }
                 </div>
             </div>
