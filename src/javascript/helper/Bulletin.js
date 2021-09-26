@@ -3,10 +3,11 @@ import { useState, useEffect, useRef } from 'react';
 
 function Bulletin(props) {
 
-    const { text } = props;
+    const { alerts } = props;
     const [ animationDuration, setAnimationDuration ] = useState(0);
     const refBulletin = useRef(null);
     const refBulletinMessage = useRef(null);
+    let bulletinMessage;
 
     useEffect(() => {
         const bulletin = refBulletin.current;
@@ -14,31 +15,30 @@ function Bulletin(props) {
         const width = bulletinMessage.clientWidth > bulletin.clientWidth ? bulletinMessage.clientWidth : bulletin.clientWidth;
         const duration = width / 0.05;
         setAnimationDuration(duration);
-    }, [refBulletin], [refBulletinMessage, text],)
+    }, [refBulletin, refBulletinMessage, alerts])
 
-    function getAlert() {
-        if (text.length > 0) {
-            return (
-                <>
-                    <span>NEWS ALERT:</span>
-                    <span>{text.toUpperCase()}</span>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <span>NO NEWS ALERT</span>
-                    <span>{text.toUpperCase()}</span>
-                </>
-            );
-        }
+    if (alerts && alerts.length > 0) {
+        bulletinMessage = <>
+            { 
+                alerts.map((element, index) => {
+                    return <>
+                        <span>{element.sender_name + ":"}</span>
+                        <span>{element.description}</span>
+                    </>
+                })
+            }
+        </>
+    } else {
+        bulletinMessage = <>
+            <span>NO NEWS ALERT</span>
+        </>
     }
 
     return (
         <div ref={refBulletin} className="bulletin">
             <p ref={refBulletinMessage} className="bulletin__message"
                 style={{animationDuration: animationDuration + "ms"}}>
-                {getAlert()}
+                { bulletinMessage }
             </p>
         </div>
     )

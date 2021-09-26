@@ -634,13 +634,18 @@ img {
         span {
             font-size: var(--font-size-medium);
 
-            &:first-child {
+            &:nth-child(2n+1) {
                 font-weight: 400;
                 margin-right: .8rem;
+                margin-left: 5rem;
             }
 
-            &:last-child {
+            &:nth-child(2n) {
                 font-weight: 100;
+            }
+
+            &:nth-child(1) {
+                margin-left: 0;
             }
         }
     }

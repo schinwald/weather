@@ -39,11 +39,13 @@ function Current(props) {
                 </div>
         }
         news = {
-            body: 
+            body: (
                 <div className="news__body">
                     <img className="news__building animation--fade-in" src="assets/images/building.svg" alt="city building illustration"/>
                     <p className="news__location animation--slide-up animation--delay-medium">{location.name}</p>
                 </div>
+            ),
+            alerts: weather.data.alerts
         }
     } else {
         forecast = {
@@ -52,9 +54,11 @@ function Current(props) {
                 </div>
         }
         news = {
-            body: 
+            body: (
                 <div className="news__body">
                 </div>
+            ),
+            alerts: null
         }
     }
 
@@ -80,7 +84,7 @@ function Current(props) {
                     { news.body }
                 </div>
                 <div className="news card__footer card__footer--secondary">
-                    <Bulletin text={""} />
+                    <Bulletin alerts={news.alerts} />
                 </div>
             </div>
         </section>
