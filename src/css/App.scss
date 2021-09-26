@@ -3,7 +3,7 @@
     --blue-600: #105063;
     --blue-100: #176f84;
     --shade-100: #f2f2f2;
-    --shade-200: #d4d4d4;
+    --shade-200: #e3e3e3;
     --shade-400: #8a8a8a;
     --shade-900: #1e1e1e;
     --red-900: #c60000;
@@ -18,6 +18,8 @@
     --font-size-large: 1.5rem;
     --font-size-xlarge: 2.2rem;
     --font-size-xxlarge: 3rem;
+
+    --box-shadow: 0 0 25px 0px rgba(0, 0, 0, 0.3);
 
     --width-search: 400px;
     --width-page-seperator-1: 25%;
@@ -90,14 +92,17 @@ img {
 
     .card:nth-child(1) {
         grid-area: current;
+        box-shadow: var(--box-shadow);
     }
 
     .card:nth-child(2) {
         grid-area: weekly;
+        box-shadow: var(--box-shadow);
     }
     
     .card:nth-child(3) {
         grid-area: hourly;
+        box-shadow: var(--box-shadow);
     }
 }
 
@@ -110,17 +115,25 @@ img {
     display: inline-block;
     position: relative;
     width: var(--width-search);
+
+    .search__container {
+        position: absolute;
+        background: var(--shade-100);
+        border-radius: 3px;
+        z-index: 1;
+        box-shadow: var(--box-shadow);
+        top: 0;
+        left: 0;
+        right: 0;
+    }
     
     .search__input {
-        background: var(--shade-100);
         display: flex;
         width: 100%;
-        outline: 1px solid var(--shade-900);
         padding: .4em .8em .4em .8em;
         box-sizing: border-box;
 
         &:focus-within {
-            outline: 3px solid var(--shade-900);
         }
 
         input:first-child {
@@ -142,19 +155,15 @@ img {
     }
 
     .search__results {
-        position: absolute;
-        background: var(--shade-100);
         list-style: none;
-        top: 33px;
-        outline: 1px solid var(--shade-900);
+        border-top: 1px solid var(--shade-400);
         width: 100%;
         cursor: default;
-        z-index: 1;
     
         li {
-            padding: .2em .6em .2em .6em;
+            padding: .4em .8em .4em .8em;
             box-sizing: border-box;
-            width: 90%;
+            width: 100%;
     
             &.selected {
                 background: var(--shade-200);
@@ -245,7 +254,7 @@ img {
         }
 
         .forecast__body {
-            height: 24em;
+            height: 22em;
 
             .weather {
 
@@ -262,7 +271,7 @@ img {
                 }
 
                 .weather__body {
-                    height: 18em;
+                    height: 16em;
 
                     .weather__content {
 
@@ -309,7 +318,7 @@ img {
 
         .news__body {
             display: block;
-            height: 16em;
+            height: 18em;
             width: auto;
             text-align: center;
 
@@ -404,7 +413,7 @@ img {
         .forecast__body {
             height: 100%;
             display: grid;
-            grid-template-columns: 1fr 10rem;
+            grid-template-columns: 1fr 13rem;
     
             .weather__chart {
                 

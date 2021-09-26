@@ -144,29 +144,31 @@ function Search(props) {
 	}
 
 	return (
-		<div className="search"
-			onFocus={handleFocus}
-			onBlur={handleBlur}>
-			<div className="search__input">
-				<input
-					ref={refLocation}
-					type={"search"}
-					placeholder={"City, Country"}
-					onKeyDown={handleKeyDown}
-					onChange={handleChange}
-					disabled={data === null}
-				/>
-				<input
-					type="button"
-					value={"🔍"}
-					onClick={handleResultClick}
-				/>
+		<div className="search">
+			<div className="search__container"
+				onFocus={handleFocus}
+				onBlur={handleBlur}>
+				<div className="search__input">
+					<input
+						ref={refLocation}
+						type={"search"}
+						placeholder={"City, Country"}
+						onKeyDown={handleKeyDown}
+						onChange={handleChange}
+						disabled={data === null}
+					/>
+					<input
+						type="button"
+						value={"\uf002"}
+						onClick={handleResultClick}
+					/>
+				</div>
+				{results.length > 0 &&
+					<ul className="search__results">
+						{generateResultsHTML()}
+					</ul>
+				}
 			</div>
-			{results.length > 0 &&
-				<ul className="search__results">
-					{generateResultsHTML()}
-				</ul>
-			}
 		</div>
 	);
 }

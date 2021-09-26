@@ -95,7 +95,7 @@ function Hourly(props) {
                 <div className={"forecast__body"}>
                     <div className="weather__chart animation--fade-in">
                         <Line 
-                            height={120}
+                            height={125}
                             data={data}
                             options={options}
                             getElementAtEvent={(element) => {if (element.length !== 0) setSelected(element[0].index); console.log(element[0].index) }} />
