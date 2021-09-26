@@ -11,7 +11,7 @@ function Navigation(props) {
     return (
         <div className="navigation">
             <header className="header">
-                <h1>Weather</h1>
+                <img className="logo" src="assets/images/logo.svg" alt="weather or not logo"/>
             </header>
             <section className="message">
                 <p>

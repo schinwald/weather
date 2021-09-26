@@ -98,7 +98,7 @@ function Hourly(props) {
                             height={120}
                             data={data}
                             options={options}
-                            getElementAtEvent={(element) => {if (element.length !== 0) setSelected(element[0].index) }} />
+                            getElementAtEvent={(element) => {if (element.length !== 0) setSelected(element[0].index); console.log(element[0].index) }} />
                     </div>
                     <div className="weather__details animation--fade-in">
                         <Details

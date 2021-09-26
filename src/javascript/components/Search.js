@@ -17,7 +17,7 @@ function Search(props) {
 			const query = location.replace(/[\s]*[,]([\s]*)/, ",$1").replace(/[\s]+/, " ").toLowerCase();
 			const array = data.filter((element) => {
 					const { tag } = element;
-					if (query === "") return true;
+					if (query === "") return false;
 					if (tag.search(query) !== -1) return true;
 					return false;
 				})
@@ -60,8 +60,8 @@ function Search(props) {
 		const input = refLocation.current;
 		const result = results[selected];
 		const processed = formatInput(result.tag);
-		input.value = processed;
-		setLocation(processed);
+		input.value = "";
+		setLocation("");
 		onSearch(result);
 	}
 
@@ -122,14 +122,12 @@ function Search(props) {
 						if (text.length > 0) return text[0].toUpperCase() + text.slice(1).toLowerCase();
 						return "";
 					});
-				console.log("space", array);
 				processed = array.join(" ");
 				array = processed.split(/[/]/)
 					.map((text) => {
 						if (text.length > 0) return text[0].toUpperCase() + text.slice(1).toLowerCase();
 						return "";
 					})
-				console.log("slash", array);
 				processed = array.join("/");
 				return processed;
 			});

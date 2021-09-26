@@ -3,6 +3,8 @@
     --blue-600: #105063;
     --blue-100: #176f84;
     --shade-100: #f2f2f2;
+    --shade-200: #d4d4d4;
+    --shade-400: #8a8a8a;
     --shade-900: #1e1e1e;
     --red-900: #c60000;
 
@@ -114,7 +116,7 @@ img {
         display: flex;
         width: 100%;
         outline: 1px solid var(--shade-900);
-        padding: 0.1em 0.5em 0.1em 0.5em;
+        padding: .4em .8em .4em .8em;
         box-sizing: border-box;
 
         &:focus-within {
@@ -143,20 +145,19 @@ img {
         position: absolute;
         background: var(--shade-100);
         list-style: none;
-        top: 30px;
+        top: 33px;
         outline: 1px solid var(--shade-900);
         width: 100%;
         cursor: default;
         z-index: 1;
     
         li {
-            padding: 0.1em 0.5em 0.1em 0.5em;
+            padding: .2em .6em .2em .6em;
             box-sizing: border-box;
-            width: 100%;
+            width: 90%;
     
             &.selected {
-                background: var(--blue-100);
-                opacity: 20%;
+                background: var(--shade-200);
             }
             
             p::after {
@@ -172,7 +173,6 @@ img {
     
             .mismatch {
                 color: var(--shade-400);
-                opacity: 50%;
             }
     
             .match {

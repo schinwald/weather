@@ -8,9 +8,10 @@ function Current(props) {
     let forecast;
     let news;
 
-    if (time !== null && location !== null && weather !== null) {
+    if (time && location && weather) {
         const current = weather.data.current;
         const minutely = weather.data.minutely;
+        const hourly = weather.data.hourly;
         let local = time + weather.data.timezone_offset;
         let minutes = Math.floor(local / 60) % 60;
         let hours = ((Math.floor(local / 3600) - 1) % 24) + 1;
@@ -29,7 +30,7 @@ function Current(props) {
                         description={current.weather[0].description}
                         temperature={Math.round(current.temp - 273.15)}
                         feelsLike={Math.round(current.feels_like - 273.15)}
-                        precipitation={minutely[minutes].precipitation}
+                        precipitation={minutely ? minutely[minutes].precipitation : hourly[0].pop}
                         humidity={current.humidity}
                         clouds={current.clouds}
                         wind={{

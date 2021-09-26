@@ -105,7 +105,6 @@ function App() {
 			} else {
 				// location has changed so we should update or use cached information
 				if (weather.location.tag !== location.tag) {
-					console.log(weather.location.tag, location.tag);
 					const stored = JSON.parse(window.localStorage.getItem("weather: " + location.tag));
 					// update if there is no cached information
 					if (stored === null) {
