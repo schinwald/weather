@@ -165,10 +165,13 @@ function App() {
 			<ContextNavigation.Provider value={{ locations: locations }}>
 				<Navigation onSearch={handleSearch} />
 			</ContextNavigation.Provider>
-			<ContextDashboard.Provider value={{ time: time, location: location, weather: weather }}>
-				<Dashboard />
-			</ContextDashboard.Provider>
-			<Attribution />
+			<div className="content">
+				<ContextDashboard.Provider value={{ time: time, location: location, weather: weather }}>
+					<Dashboard />
+				</ContextDashboard.Provider>
+				<Attribution />
+            	<img className="background" src="assets/images/background.svg" alt="mountains in the distance"/>
+			</div>
 		</div>
 	)
 }

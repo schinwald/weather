@@ -3,13 +3,13 @@ import { Current, Weekly, Hourly } from '../components';
 
 function Dashboard(props) {
     
-    return (
+    return <>
 		<main className="dashboard">
             <Current />
             <Weekly />
             <Hourly />
         </main>
-    )
+    </>
 }
 
 
