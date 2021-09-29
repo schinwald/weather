@@ -146,7 +146,7 @@ function App() {
 						const object = {
 							timestamp: time,
 							location: location,
-							data: error
+							data: null
 						}
 						setWeather(object);
 						console.log("error")

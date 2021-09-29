@@ -161,6 +161,7 @@ img {
 .attribution {
     margin-top: 3rem;
     text-align: center;
+    color: var(--shade-100);
 }
 
 .header,
@@ -233,7 +234,7 @@ img {
             }
             
             p::after {
-                font-family: "Font Awesome 5 Free";
+                font-family: var(--font-family-icons-free);
                 font-weight: 900;
                 font-size: var(--font-size-xsmall);
                 padding: 0.2em 0.2em 0.2em 0.2em;
@@ -249,6 +250,63 @@ img {
     
             .match {
                 color: var(--shade-900);
+            }
+        }
+    }
+}
+
+.dropdown {
+    position: relative;
+    z-index: 2;
+
+    .dropdown__container {
+        position: absolute;
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        cursor: default;
+        transition: outline 500ms;
+        
+        .dropdown__button {
+            background: none;
+            border: none;
+            width: auto;
+            text-align: left;
+            padding: .4rem .7rem;
+
+            &::after {
+                content: "\f078";
+                font-family: var(--font-family-icons-free);
+                font-weight: 900;
+                float: right;
+            }
+        }
+
+        .dropdown__divider {
+            border: none;
+            height: 1px;
+        }
+
+        .dropdown__items {
+            width: auto;
+
+            .dropdown__item {
+                list-style-type: none;
+                width: auto;
+                text-align: left;
+                padding: .2rem .7rem;
+
+                &.selected {
+                    background-color: rgba(0, 0, 0, .2);
+                }
+
+                &:first-child {
+                    padding: .4rem .7rem .2rem;
+                }
+
+                &:last-child {
+                    padding: .2rem .7rem .4rem;
+                }
             }
         }
     }
@@ -398,7 +456,7 @@ img {
             }
              
             .news__location::before {
-                font-family: "Font Awesome 5 Free";
+                font-family: var(--font-family-icons-free);
                 font-weight: 900;
                 font-size: var(--font-size-xsmall);
                 padding: 0.2em;
@@ -470,6 +528,43 @@ img {
 .hourly {
     height: 100%;
 
+    .forecast {
+        position: unset;
+    }
+
+    .card__title {
+
+        .forecast__title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: unset; 
+
+            .dropdown {
+                top: 0;
+                width: 180px;
+                height: 31.8px;
+
+                .dropdown__container {
+                    background-color: var(--blue-600);
+
+                    .dropdown__button {
+                        color: var(--shade-100);
+                        font-size: var(--font-size-medium);
+                    }
+
+                    .dropdown__divider {
+                        background-color: var(--shade-100);
+                    }
+
+                    .dropdown__items {
+                        color: var(--shade-100);
+                    }
+                }
+            }
+        }
+    }
+
     .card__body {
         height: calc(100% - 55.2px - 2em);
         
@@ -482,8 +577,24 @@ img {
                 
             }
 
-            .weather__details {
-    
+            .weather__entry {
+                height: 100%;
+                width: 100%;
+                display: grid;
+                grid-template-rows: auto 1fr;
+
+                .weather__title {
+                    margin-top: 1rem;
+                    text-align: center;
+
+                    span:not(:first-child) {
+                        margin-left: .5rem;
+                    }
+                }
+
+                .weather__details {
+                    margin: auto;
+                }
             }
         }
         

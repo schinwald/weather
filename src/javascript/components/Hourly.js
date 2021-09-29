@@ -2,27 +2,37 @@ import { Line } from 'react-chartjs-2';
 import { useContext, useState } from 'react';
 import { ContextDashboard } from '../../App.js';
 import { Details } from '../helper/Details.js';
+import { Dropdown } from '../components/Dropdown.js'
 
 
 function Hourly(props) {
 
     const { time, location, weather } = useContext(ContextDashboard);
-    const [ selected, setSelected ] = useState(0);
+    const [ category, setCategory ] = useState(0);
+    const [ entry, setEntry ] = useState(0);
     let forecast;
 
-    if (time !== null && location !== null && weather !== null) {
+    if (time && location && weather) {
         const hourly = weather.data.hourly;
+        const local = time + weather.data.timezone_offset;
+        const hours = Math.floor(local / 3600) % 24;
         const times = [
             "12:00am", "1:00am", "2:00am", "3:00am", "4:00am", "5:00am", "6:00am", "7:00am", "8:00am", "9:00am", "10:00am", "11:00am",
             "12:00pm", "1:00pm", "2:00pm", "3:00pm", "4:00pm", "5:00pm", "6:00pm", "7:00pm", "8:00pm", "9:00pm", "10:00pm", "11:00pm",
-        ];
+        ].map((element, index, array) => {
+            return array[(hours + index) % 24];
+        })
         const values = weather.data.hourly.map((element) => {
-                return Math.round(element.temp - 273.15);
-            })
-            .filter((element, index) => {
-                if (index < 24) return true;
-                return false;
-            });
+            switch (category) {
+                case 0: return Math.round(element.temp - 273.15)
+                case 1: return Math.round(element.feels_like - 273.15);
+                case 2: return element.pop;
+                case 3: return element.humidity;
+                case 4: return element.clouds;
+                case 5: return Math.round(element.wind_speed);
+                default: return 0;
+            }
+        });
         const data = {
             labels: times,
             datasets: [{ data: values }]
@@ -52,7 +62,32 @@ function Hourly(props) {
                     max: Math.max.apply(this, values) + 2,
                     min: Math.min.apply(this, values) - 2,
                     grid: {
-                        color: "rgba(255, 255, 255, 0.1)"
+                        color: "rgba(255, 255, 255, 0.1)",
+                        borderColor: "rgba(255, 255, 255, 0.1)",
+                        tickColor: "rgba(255, 255, 255, 0.1)"
+                    },
+                    ticks: {
+                        display: false,
+                        stepSize: 1
+                    }
+                },
+                xAxis: {
+                    grid: {
+                        color: "rgba(255, 255, 255, 0.1)",
+                        borderColor: "rgba(255, 255, 255, 0.1)",
+                        tickColor: "rgba(255, 255, 255, 0.1)"
+                    },
+                    ticks: {
+                        display: false
+                    }
+                },
+                yAxis: {
+                    max: Math.max.apply(this, values) + 2,
+                    min: Math.min.apply(this, values) - 2,
+                    grid: {
+                        display: false,
+                        borderColor: "rgba(255, 255, 255, 0)",
+                        tickColor: "rgba(255, 255, 255, 0)"
                     },
                     ticks: {
                         color: "rgba(255, 255, 255, 1)",
@@ -60,16 +95,16 @@ function Hourly(props) {
                     }
                 },
                 x: {
-                    max: 23,
-                    min: 0,
                     grid: {
-                        color: "rgba(255, 255, 255, 0.1)"
+                        display: false,
+                        borderColor: "rgba(255, 255, 255, 0)",
+                        tickColor: "rgba(255, 255, 255, 0)"
                     },
                     ticks: {
                         color: "rgba(255, 255, 255, 1)",
-                        // callback: (element, index, array) => {
-                        //     return ((index % 2) === 1) ? times[index] : null;
-                        // }
+                        callback: (element, index, array) => {
+                            return ((index % 3) === 1) ? times[index] : null;
+                        }
                     }
                 }
             },
@@ -98,18 +133,25 @@ function Hourly(props) {
                             height={125}
                             data={data}
                             options={options}
-                            getElementAtEvent={(element) => {if (element.length !== 0) setSelected(element[0].index); console.log(element[0].index) }} />
+                            getElementAtEvent={(element) => {if (element.length > 0) setEntry(element[0].index); }} />
                     </div>
-                    <div className="weather__details animation--fade-in">
+                    <div className="weather__entry animation--fade-in">
+                        <header className="weather__title">
+                            <h3>Entry</h3>
+                            <p>
+                                <span>Time</span>
+                                <span>{times[entry]}</span>
+                            </p>
+                        </header>
                         <Details
-                            temperature={Math.round(hourly[selected].temp - 273.15)}
-                            feelsLike={Math.round(hourly[selected].feels_like - 273.15)}
-                            precipitation={hourly[selected].pop}
-                            humidity={hourly[selected].humidity}
-                            clouds={hourly[selected].clouds}
+                            temperature={Math.round(hourly[entry].temp - 273.15)}
+                            feelsLike={Math.round(hourly[entry].feels_like - 273.15)}
+                            precipitation={hourly[entry].pop}
+                            humidity={hourly[entry].humidity}
+                            clouds={hourly[entry].clouds}
                             wind={{
-                                degree: hourly[selected].wind_deg,
-                                speed: hourly[selected].wind_speed
+                                degree: hourly[entry].wind_deg,
+                                speed: hourly[entry].wind_speed
                             }} />
                     </div>
                 </div>
@@ -131,6 +173,10 @@ function Hourly(props) {
                 <div className="forecast card__title card__title--primary">
                     <div className="forecast__title">
                         <h2>Hourly Forecast</h2>
+                        <Dropdown 
+                            index={0} 
+                            items={["Temperature", "Feels-like", "Precipitation", "Humidity", "Clouds", "Wind Speed"]} 
+                            callback={(index) => { setCategory(index) }}/>
                     </div>
                 </div>
                 <div className="forecast card__body card__body--primary">

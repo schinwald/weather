@@ -1,10 +1,53 @@
-# Attributions
+![Weather Or Not logo](public/assets/images/logo.svg)
 
-[Simplemaps](https://simplemaps.com/data/world-cities) - access to 41 thousand world city entries 
+A weather dashboard created using react.js and the jamstack which elegantly displays current, hourly, and weekly forecasts. These forecasts are stored on local storage and updated on an hourly basis to avoid api calls. The current forecast uses minute data to estimate weather parameters as time progresses between api calls. The css used in this project was made from scratch (no css libraries other than those provided from erikflowers' weather icons).
 
-# Getting Started with Create React App
+Try it out! [schinwald.github.io/weather-or-not](https://schinwald.github.io/weather-or-not)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Learning Outcomes
+
+- Understanding react using hooks as opposed to the traditional method
+    - useEffect
+    - useState
+    - useRef
+    - useContext
+        - ContextProviders
+        - ContextConsumers (not used explicitly since useContext hook was used)
+- Understanding css on a deeper level and using scss to enhance the experience
+    - Variables
+    - Nesting
+    - Pseudo classes
+        - :nth-child
+        - :first-child
+        - :last-child
+        - :not
+    - Difference between animations and transitions
+    - Difference between different display types
+        - block
+        - inline-block
+        - flex
+        - grid
+    - Justification/alignment techniques for each display type
+    - Strategies for creating custom components
+        - Search
+        - Dropdown
+- User interface
+    - Proper HTML tags and aria attributes for accessibility
+    - Using contrast to help users see text more clearly
+    - Media queries for different screens (not implemented, but learned)
+- Benefit of researching a problem prior to implementing a solution for it
+
+## Attributions
+
+| Attributor                                                 | Description                                     |
+|-----------------------------------------------------------:|:------------------------------------------------|
+| [Simplemaps](https://simplemaps.com/data/world-cities)     | access to 41 thousand world city entries        |
+| [OpenWeatherMap](https://openweathermap.org)               | access to weather data around the world         |
+| [Storyset](https://storyset.com)                           | many different free vector images               |
+| [Erikflowers](https://erikflowers.github.io/weather-icons) | weather icons with openweathermap compatibility |
+| [FontAwesome](https://fontawesome.com)                     | general icons in the free and brands categories |
 
 ## Available Scripts
 
