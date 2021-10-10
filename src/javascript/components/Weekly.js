@@ -9,7 +9,6 @@ function Weekly(props) {
     let forecast;
 
     if (location !== null && weather !== null) {
-        const current = weather.data.current;
         const daily = weather.data.daily;
         const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         const weekdayOffset = new Date(time + weather.data.timezone_offset).getDay();
@@ -50,7 +49,7 @@ function Weekly(props) {
     }
     
     return (
-        <div className="card">
+        <section className="card">
             <div className="weekly card__content">
                 {/* Forecast section */}
                 <div className="forecast card__title card__title--primary">
@@ -60,7 +59,7 @@ function Weekly(props) {
                     { forecast.body }
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

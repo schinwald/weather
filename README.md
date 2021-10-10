@@ -1,8 +1,10 @@
-![Weather Or Not logo](public/assets/images/logo.svg)
+# Weather Or Not
 
-A weather dashboard created using react.js and the jamstack which elegantly displays current, hourly, and weekly forecasts. These forecasts are stored on local storage and updated on an hourly basis to avoid api calls. The current forecast uses minute data to estimate weather parameters as time progresses between api calls. The css used in this project was made from scratch (no css libraries other than those provided from erikflowers' weather icons).
+
 
 Try it out! [schinwald.github.io/weather-or-not](https://schinwald.github.io/weather-or-not)
+
+A weather dashboard created using react.js and the jamstack which elegantly displays current, hourly, and weekly forecasts. These forecasts are stored in local storage and updated on an hourly basis to avoid excessive api calls. The current forecast uses minute data to estimate weather parameters as time progresses between api calls. The css used in this project was made from scratch (no css libraries other than those provided from erikflowers' weather icons).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

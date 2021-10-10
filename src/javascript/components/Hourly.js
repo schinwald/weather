@@ -167,7 +167,7 @@ function Hourly(props) {
     }
 
     return (
-        <div className="card">
+        <section className="card">
             <div className="hourly card__content">
                 {/* Forecast section */}
                 <div className="forecast card__title card__title--primary">
@@ -183,7 +183,7 @@ function Hourly(props) {
                     { forecast.body }
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
 

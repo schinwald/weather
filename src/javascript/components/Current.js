@@ -16,7 +16,6 @@ function Current(props) {
         let minutes = Math.floor(local / 60) % 60;
         let hours = ((Math.floor(local / 3600) - 1) % 24) + 1;
         let period = hours < 12 ? "am" : "pm";
-        let timezone = "";
         hours = ((hours - 1) % 12) + 1;
         forecast = {
             body: 

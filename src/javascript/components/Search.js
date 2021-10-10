@@ -59,7 +59,6 @@ function Search(props) {
 	function handleResultClick() {
 		const input = refLocation.current;
 		const result = results[selected];
-		const processed = formatInput(result.tag);
 		input.value = "";
 		setLocation("");
 		onSearch(result);
