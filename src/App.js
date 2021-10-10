@@ -44,11 +44,11 @@ function App() {
 							iso: lines[5]
 						}
 					});
+				setLocations(locations);
 			}).catch((error) => {
 				locations = null;
 			});
-		}
-		setLocations(locations);	
+		}	
 		return () => {
 			window.localStorage.setItem("locations", JSON.stringify(locations));
 		}	
@@ -154,7 +154,7 @@ function App() {
 					});
 			}
 		}
-	}, [location, weather, time]);
+	}, [location, locations, weather, time]);
 
 	function handleSearch(query) {
 		setLocation(query);
