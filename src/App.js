@@ -27,27 +27,27 @@ function App() {
 	useEffect(() => {
 		let locations = JSON.parse(window.localStorage.getItem("locations"));
 		if (locations === null) {
-			axios.get(window.location.href + '/assets/data/worldcities.csv')
-			.then((response) => {
-				locations = response.data.split("\n")
-					.filter((line, index) => {
-						if (index !== 0) return true;
-						return false;
-					})
-					.map((line) => {
-						const lines = line.split(/[\s]*[,][\s]*/);
-						return {
-							tag: (lines[0] + ", " + lines[1]).toLowerCase(),
-							name: lines[2] + ", " + lines[1],
-							latitude: lines[3],
-							longitude: lines[4],
-							iso: lines[5]
-						}
-					});
-				setLocations(locations);
-			}).catch((error) => {
-				locations = null;
-			});
+			axios.get(window.location.href + 'assets/data/worldcities.csv')
+				.then((response) => {
+					locations = response.data.split("\n")
+						.filter((line, index) => {
+							if (index !== 0) return true;
+							return false;
+						})
+						.map((line) => {
+							const lines = line.split(/[\s]*[,][\s]*/);
+							return {
+								tag: (lines[0] + ", " + lines[1]).toLowerCase(),
+								name: lines[2] + ", " + lines[1],
+								latitude: lines[3],
+								longitude: lines[4],
+								iso: lines[5]
+							}
+						});
+					setLocations(locations);
+				}).catch((error) => {
+					locations = null;
+				});
 		}	
 		return () => {
 			window.localStorage.setItem("locations", JSON.stringify(locations));

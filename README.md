@@ -1,8 +1,9 @@
 # Weather Or Not
 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ad5270f6-de72-4a7e-a749-ede6d352b2ac/deploy-status)](https://app.netlify.com/sites/trusting-goldberg-c06bfd/deploys)
 
-Try it out! [schinwald.github.io/weather-or-not](https://schinwald.github.io/weather-or-not)
+Try it out! [https://trusting-goldberg-c06bfd.netlify.app/](https://trusting-goldberg-c06bfd.netlify.app/)
 
 A weather dashboard created using react.js and the jamstack which elegantly displays current, hourly, and weekly forecasts. These forecasts are stored in local storage and updated on an hourly basis to avoid excessive api calls. The current forecast uses minute data to estimate weather parameters as time progresses between api calls. The css used in this project was made from scratch (no css libraries other than those provided from erikflowers' weather icons).
 
