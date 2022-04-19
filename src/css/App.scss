@@ -65,6 +65,7 @@ img {
 }
 
 .link {
+    text-decoration: underline;
 
     &.link--primary {
         color: var(--yellow-400);
@@ -73,18 +74,24 @@ img {
     &.link--secondary {
         color: var(--shade-100);
     }
+
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .icon {
-    
+    position: relative;
+    margin-left: 1.5rem;
+
     &.icon--github:before {
         content: "\f09b";
+        position: absolute;
         font-family: var(--font-family-icons-brands);
-        font-size: var(--font-size-large);
+        font-size: var(--font-size-medium);
         font-weight: 400;
-        vertical-align: middle;
         margin-right: .5rem;
-        text-decoration: none;
+        right: 100%;
     }
 }
 
